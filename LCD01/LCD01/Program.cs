@@ -9,7 +9,8 @@ namespace LCD01
     public class Program
     {
         //Initialisation variables
-
+        static byte PositionCurseur = 0x00;
+        static string Phrase = "Surtaxe Majorée = 240, -";
 
         //Ecran LED
         static OutputPort D4 = new OutputPort(FEZSpider.Socket11.Pin5, true); //Affichage Ecran LED
@@ -34,9 +35,28 @@ namespace LCD01
 
             //Affichage de 'a'
             RS.Write(true);
-            AfficheChaine("Adrien ???");
+            AfficheChaine(Phrase);
 
-            
+            while(true){
+                RS.Write(false);
+                D7.Write(false);
+                D6.Write(false);
+                D5.Write(false);
+                D4.Write(true);
+                EnableSequence();
+                Thread.Sleep(1);
+                D7.Write(true);
+                D6.Write(false);
+                EnableSequence();
+                Thread.Sleep(500);
+            }
+                
+            //RS.Write(false);
+            //PositionCurseur = 0x40;
+            //SendCmd((byte)(0x80 + PositionCurseur));
+
+            //RS.Write(true);
+            //AfficheChaine("Lucas ???");
     
 
         }
