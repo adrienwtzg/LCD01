@@ -9,6 +9,7 @@ namespace LCD01
     public class Program
     {
         //Initialisation variables
+
         static byte PositionCurseur = 0x00;
         static string Phrase = "Surtaxe Majorée = 240, -";
 
@@ -23,41 +24,26 @@ namespace LCD01
 
         public static void Main()
         {
-            
             //Traitement
 
             //Initialisation programme
-            Thread.Sleep(40);
-            SendCmd(0x33);
-            SendCmd(0x32);
-            SendCmd(0x0C);
-            SendCmd(0x01);
+            InitialisationProgramme();
 
-            //Affichage de 'a'
+            //Affichage d'une phrase qui défile
             RS.Write(true);
             AfficheChaine(Phrase);
-
-            while(true){
-                RS.Write(false);
-                D7.Write(false);
-                D6.Write(false);
-                D5.Write(false);
-                D4.Write(true);
-                EnableSequence();
-                Thread.Sleep(1);
-                D7.Write(true);
-                D6.Write(false);
-                EnableSequence();
-                Thread.Sleep(500);
-            }
-
+            while (true)
+	        {
+	            FaireDefiler();
+	        }
+            
             #region Position Curseur
-            RS.Write(false);
-            PositionCurseur = 0x40;
-            SendCmd((byte)(0x80 + PositionCurseur));
+            //RS.Write(false);
+            //PositionCurseur = 0x40;
+            //SendCmd((byte)(0x80 + PositionCurseur));
 
-            RS.Write(true);
-            AfficheChaine("Lucas ???");
+            //RS.Write(true);
+            //AfficheChaine("Lucas ???");
             #endregion
 
         }
@@ -88,6 +74,28 @@ namespace LCD01
             {
                 SendCmd((byte)car);
             }
+        }
+        public static void FaireDefiler()
+        {
+                RS.Write(false);
+                D7.Write(false);
+                D6.Write(false);
+                D5.Write(false);
+                D4.Write(true);
+                EnableSequence();
+                Thread.Sleep(1);
+                D7.Write(true);
+                D6.Write(false);
+                EnableSequence();
+                Thread.Sleep(500);
+        }
+        public static void InitialisationProgramme()
+        {
+            Thread.Sleep(40);
+            SendCmd(0x33);
+            SendCmd(0x32);
+            SendCmd(0x0C);
+            SendCmd(0x01);
         }
     }
 }
