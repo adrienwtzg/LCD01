@@ -10,7 +10,7 @@ namespace LCD01
     {
         //Initialisation variables
         static byte PositionCurseur = 0x00;
-        static string Phrase = "Surtaxe Majorée = 240, -";
+        static string Phrase = "Salut les copains !!!";
 
         //Ecran LED
         static OutputPort D4 = new OutputPort(FEZSpider.Socket11.Pin5, true); //Affichage Ecran LED
@@ -39,16 +39,7 @@ namespace LCD01
 
             while(true){
                 RS.Write(false);
-                D7.Write(false);
-                D6.Write(false);
-                D5.Write(false);
-                D4.Write(true);
-                EnableSequence();
-                Thread.Sleep(1);
-                D7.Write(true);
-                D6.Write(false);
-                EnableSequence();
-                Thread.Sleep(500);
+                EcrirePin(false, false, false, true, true, false, false, false, 200);
             }
 
             #region Position Curseur
@@ -67,20 +58,27 @@ namespace LCD01
             Enable.Write(false);
 
         }
+
+        public static void EcrirePin(bool d7, bool d6, bool d5, bool d4, bool d3, bool d2, bool d1, bool d0, int tempsSleep)
+        {
+            D7.Write(d7);
+            D6.Write(d6);
+            D5.Write(d5);
+            D4.Write(d4);
+            EnableSequence();
+            Thread.Sleep(1);
+            D7.Write(d3);
+            D6.Write(d2);
+            D5.Write(d1);
+            D4.Write(d0);
+            EnableSequence();
+            Thread.Sleep(tempsSleep);
+        }
+
         public static void SendCmd(byte Value)
         {
-            D7.Write((Value & 0x80) == 0x80);
-            D6.Write((Value & 0x40) == 0x40);
-            D5.Write((Value & 0x20) == 0x20);
-            D4.Write((Value & 0x10) == 0x10);
-            EnableSequence();
-            Thread.Sleep(1);
-            D7.Write((Value & 0x08) == 0x08);
-            D6.Write((Value & 0x04) == 0x04);
-            D5.Write((Value & 0x02) == 0x02);
-            D4.Write((Value & 0x01) == 0x01);
-            EnableSequence();
-            Thread.Sleep(1);
+            EcrirePin((Value & 0x80) == 0x80, (Value & 0x40) == 0x40, (Value & 0x20) == 0x20, (Value & 0x10) == 0x10, (Value & 0x08) == 0x08, (Value & 0x04) == 0x04, (Value & 0x02) == 0x02, (Value & 0x01) == 0x01, 1);
+
         }
         public static void AfficheChaine(string chaine)
         {
