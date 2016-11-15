@@ -50,14 +50,15 @@ namespace LCD01
                 EnableSequence();
                 Thread.Sleep(500);
             }
-                
-            //RS.Write(false);
-            //PositionCurseur = 0x40;
-            //SendCmd((byte)(0x80 + PositionCurseur));
 
-            //RS.Write(true);
-            //AfficheChaine("Lucas ???");
-    
+            #region Position Curseur
+            RS.Write(false);
+            PositionCurseur = 0x40;
+            SendCmd((byte)(0x80 + PositionCurseur));
+
+            RS.Write(true);
+            AfficheChaine("Lucas ???");
+            #endregion
 
         }
         public static void EnableSequence() //Methode pour faire fonctionner le LCD
