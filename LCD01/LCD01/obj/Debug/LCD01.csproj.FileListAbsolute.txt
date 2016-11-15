@@ -26,3 +26,31 @@ C:\Users\Witziga\Documents\Visual Studio 2013\Projects\LCD01\LCD01\obj\Debug\le\
 C:\Users\Witziga\Documents\Visual Studio 2013\Projects\LCD01\LCD01\obj\Debug\le\LCD01.pdbx
 C:\Users\Witziga\Documents\Visual Studio 2013\Projects\LCD01\LCD01\obj\Debug\LCD01.exe
 C:\Users\Witziga\Documents\Visual Studio 2013\Projects\LCD01\LCD01\obj\Debug\LCD01.pdb
+C:\Users\Witziga\Documents\GitHub\LCD01\LCD01\LCD01\bin\Debug\le\LCD01.exe
+C:\Users\Witziga\Documents\GitHub\LCD01\LCD01\LCD01\bin\Debug\be\LCD01.exe
+C:\Users\Witziga\Documents\GitHub\LCD01\LCD01\LCD01\bin\Debug\le\LCD01.pdb
+C:\Users\Witziga\Documents\GitHub\LCD01\LCD01\LCD01\bin\Debug\be\LCD01.pdb
+C:\Users\Witziga\Documents\GitHub\LCD01\LCD01\LCD01\bin\Debug\LCD01.exe
+C:\Users\Witziga\Documents\GitHub\LCD01\LCD01\LCD01\bin\Debug\LCD01.pdb
+C:\Users\Witziga\Documents\GitHub\LCD01\LCD01\LCD01\bin\Debug\le\LCD01.pe
+C:\Users\Witziga\Documents\GitHub\LCD01\LCD01\LCD01\bin\Debug\le\LCD01.pdbx
+C:\Users\Witziga\Documents\GitHub\LCD01\LCD01\LCD01\bin\Debug\be\LCD01.pe
+C:\Users\Witziga\Documents\GitHub\LCD01\LCD01\LCD01\bin\Debug\be\LCD01.pdbx
+C:\Users\Witziga\Documents\GitHub\LCD01\LCD01\LCD01\bin\Debug\LE\GHI.Pins.pe
+C:\Users\Witziga\Documents\GitHub\LCD01\LCD01\LCD01\bin\Debug\BE\GHI.Pins.pe
+C:\Users\Witziga\Documents\GitHub\LCD01\LCD01\LCD01\bin\Debug\LE\GHI.Pins.pdbx
+C:\Users\Witziga\Documents\GitHub\LCD01\LCD01\LCD01\bin\Debug\BE\GHI.Pins.pdbx
+C:\Users\Witziga\Documents\GitHub\LCD01\LCD01\LCD01\bin\Debug\GHI.Pins.dll
+C:\Users\Witziga\Documents\GitHub\LCD01\LCD01\LCD01\bin\Debug\GHI.Pins.xml
+C:\Users\Witziga\Documents\GitHub\LCD01\LCD01\LCD01\obj\Debug\LCD01.csprojResolveAssemblyReference.cache
+C:\Users\Witziga\Documents\GitHub\LCD01\LCD01\LCD01\obj\Debug\TinyCLR_DebugReferences.cache
+C:\Users\Witziga\Documents\GitHub\LCD01\LCD01\LCD01\obj\Debug\LCD01.Resources.resources
+C:\Users\Witziga\Documents\GitHub\LCD01\LCD01\LCD01\obj\Debug\LCD01.csproj.GenerateResource.Cache
+C:\Users\Witziga\Documents\GitHub\LCD01\LCD01\LCD01\obj\Debug\LCD01.Resources.tinyresources
+C:\Users\Witziga\Documents\GitHub\LCD01\LCD01\LCD01\obj\Debug\TinyResGen.cache
+C:\Users\Witziga\Documents\GitHub\LCD01\LCD01\LCD01\obj\Debug\be\LCD01.pe
+C:\Users\Witziga\Documents\GitHub\LCD01\LCD01\LCD01\obj\Debug\be\LCD01.pdbx
+C:\Users\Witziga\Documents\GitHub\LCD01\LCD01\LCD01\obj\Debug\le\LCD01.pe
+C:\Users\Witziga\Documents\GitHub\LCD01\LCD01\LCD01\obj\Debug\le\LCD01.pdbx
+C:\Users\Witziga\Documents\GitHub\LCD01\LCD01\LCD01\obj\Debug\LCD01.exe
+C:\Users\Witziga\Documents\GitHub\LCD01\LCD01\LCD01\obj\Debug\LCD01.pdb
