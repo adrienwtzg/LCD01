@@ -34,12 +34,7 @@ namespace LCD01
 
             //Affichage de 'a'
             RS.Write(true);
-            SendCmd((byte)'A');
-            SendCmd((byte)'d');
-            SendCmd((byte)'r');
-            SendCmd((byte)'i');
-            SendCmd((byte)'e');
-            SendCmd((byte)'n');
+            AfficheChaine("Adrien ???");
 
             
     
@@ -65,6 +60,13 @@ namespace LCD01
             D4.Write((Value & 0x01) == 0x01);
             EnableSequence();
             Thread.Sleep(1);
+        }
+        public static void AfficheChaine(string chaine)
+        {
+            foreach (char car in chaine)
+            {
+                SendCmd((byte)car);
+            }
         }
     }
 }
