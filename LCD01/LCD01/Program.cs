@@ -11,7 +11,7 @@ namespace LCD01
         //Initialisation variables
 
         static byte PositionCurseur = 0x00;
-        static string Phrase = "Surtaxe Majorée = 240, -";
+        static string Phrase = DateTime.Now.Hour.ToString() + "h " + DateTime.Now.Minute.ToString() + "min";
 
         //Ecran LED
         static OutputPort D4 = new OutputPort(FEZSpider.Socket11.Pin5, true); //Affichage Ecran LED
