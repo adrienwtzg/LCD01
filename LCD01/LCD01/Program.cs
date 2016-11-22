@@ -8,11 +8,12 @@ namespace LCD01
 {
     public class Program
     {
-        //Initialisation variables
-        static byte PositionCurseur = 0x00;
-        static string Phrase = "Surtaxe Majorée = 240, -";
+        #region Initialisation variables
 
-        //Ecran LED
+        const byte POSITION_CURSEUR = 0x00;
+        static string Phrase = DateTime.Now.Hour.ToString() + "h " + DateTime.Now.Minute.ToString() + "min";
+
+        #region Initialisation Ecran LED
         static OutputPort D4 = new OutputPort(FEZSpider.Socket11.Pin5, true); //Affichage Ecran LED
         static OutputPort D5 = new OutputPort(FEZSpider.Socket11.Pin7, true);
         static OutputPort D6 = new OutputPort(FEZSpider.Socket11.Pin9, true);
@@ -20,53 +21,41 @@ namespace LCD01
         static OutputPort BacklightEcranLed = new OutputPort(FEZSpider.Socket11.Pin8, true); //Backlight de l'ecran LED
         static OutputPort Enable = new OutputPort(FEZSpider.Socket11.Pin3, true); //Enable de l'ecran LED
         static OutputPort RS = new OutputPort(FEZSpider.Socket11.Pin4, false); //RS de l'écran
+        #endregion
+
+        #endregion
 
         public static void Main()
         {
-            
-            //Traitement
 
-            //Initialisation programme
-            Thread.Sleep(40);
-            SendCmd(0x33);
-            SendCmd(0x32);
-            SendCmd(0x0C);
-            SendCmd(0x01);
+            InitialisationProgramme();
 
-            //Affichage de 'a'
+            #region Affichage d'une phrase qui défile
             RS.Write(true);
             AfficheChaine(Phrase);
-
-            while(true){
-                RS.Write(false);
-                D7.Write(false);
-                D6.Write(false);
-                D5.Write(false);
-                D4.Write(true);
-                EnableSequence();
-                Thread.Sleep(1);
-                D7.Write(true);
-                D6.Write(false);
-                EnableSequence();
-                Thread.Sleep(500);
+            while (true)
+	        {
+	            FaireDefilerDroite();
+                
             }
+            #endregion
 
             #region Position Curseur
-            RS.Write(false);
-            PositionCurseur = 0x40;
-            SendCmd((byte)(0x80 + PositionCurseur));
+            //RS.Write(false);
+            //PositionCurseur = 0x40;
+            //SendCmd((byte)(0x80 + PositionCurseur));
 
-            RS.Write(true);
-            AfficheChaine("Lucas ???");
+            //RS.Write(true);
+            //AfficheChaine("Lucas ???");
             #endregion
 
         }
-        public static void EnableSequence() //Methode pour faire fonctionner le LCD
+        public static void EnableSequence()
         {
             Enable.Write(true); 
             Enable.Write(false);
 
-        }
+        } //Methode pour faire fonctionner le LCD
         public static void SendCmd(byte Value)
         {
             D7.Write((Value & 0x80) == 0x80);
@@ -88,6 +77,26 @@ namespace LCD01
             {
                 SendCmd((byte)car);
             }
+        } 
+        public static void FaireDefilerGauche()
+        {
+            RS.Write(false);
+            SendCmd(0x18);
+            Thread.Sleep(500);
+        }
+        public static void FaireDefilerDroite()
+        {
+            RS.Write(false);
+            SendCmd(0x1C);
+            Thread.Sleep(500);
+        }
+        public static void InitialisationProgramme()
+        {
+            Thread.Sleep(40);
+            SendCmd(0x33);
+            SendCmd(0x32);
+            SendCmd(0x0C);
+            SendCmd(0x01);
         }
     }
 }
