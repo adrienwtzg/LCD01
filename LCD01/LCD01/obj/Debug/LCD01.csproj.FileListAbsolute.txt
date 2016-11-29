@@ -54,3 +54,9 @@ C:\Users\Witziga\Documents\GitHub\LCD01\LCD01\LCD01\obj\Debug\le\LCD01.pe
 C:\Users\Witziga\Documents\GitHub\LCD01\LCD01\LCD01\obj\Debug\le\LCD01.pdbx
 C:\Users\Witziga\Documents\GitHub\LCD01\LCD01\LCD01\obj\Debug\LCD01.exe
 C:\Users\Witziga\Documents\GitHub\LCD01\LCD01\LCD01\obj\Debug\LCD01.pdb
+C:\Users\Witziga\Documents\GitHub\LCD01\LCD01\LCD01\bin\Debug\LE\GHI.Hardware.pe
+C:\Users\Witziga\Documents\GitHub\LCD01\LCD01\LCD01\bin\Debug\BE\GHI.Hardware.pe
+C:\Users\Witziga\Documents\GitHub\LCD01\LCD01\LCD01\bin\Debug\LE\GHI.Hardware.pdbx
+C:\Users\Witziga\Documents\GitHub\LCD01\LCD01\LCD01\bin\Debug\BE\GHI.Hardware.pdbx
+C:\Users\Witziga\Documents\GitHub\LCD01\LCD01\LCD01\bin\Debug\GHI.Hardware.dll
+C:\Users\Witziga\Documents\GitHub\LCD01\LCD01\LCD01\bin\Debug\GHI.Hardware.xml

@@ -3,6 +3,7 @@ using Microsoft.SPOT;
 using GHI.Pins;
 using Microsoft.SPOT.Hardware;
 using System.Threading;
+using GHI.Processor;
 
 namespace LCD01
 {
@@ -10,8 +11,11 @@ namespace LCD01
     {
         #region Initialisation variables
 
-        const byte POSITION_CURSEUR = 0x00;
-        static string Phrase = DateTime.Now.Hour.ToString() + "h " + DateTime.Now.Minute.ToString() + "min";
+        public static DateTime DT;
+        public static byte PositionCurseur = 0x40;
+        
+        public Timer TimerAfficheMinutes = new Timer(new TimerCallback(TAffichage), null , 0, 1000);
+        TimerCallback TAffichage = 
 
         #region Initialisation Ecran LED
         static OutputPort D4 = new OutputPort(FEZSpider.Socket11.Pin5, true); //Affichage Ecran LED
@@ -27,27 +31,26 @@ namespace LCD01
 
         public static void Main()
         {
-
+            
             InitialisationProgramme();
 
-            #region Affichage d'une phrase qui défile
-            RS.Write(true);
-            AfficheChaine(Phrase);
-            while (true)
-	        {
-	            FaireDefilerDroite();
-                
-            }
-            #endregion
-
-            #region Position Curseur
-            //RS.Write(false);
-            //PositionCurseur = 0x40;
-            //SendCmd((byte)(0x80 + PositionCurseur));
-
+            #region Affichage d'une phrase qui défile //Désactivé
             //RS.Write(true);
-            //AfficheChaine("Lucas ???");
+            //AfficheChaine("");
+            //while (true)
+            //{
+            //    FaireDefilerDroite();
+
+            //}
+            #endregion 
+
+            #region Initialisation Heure
+            DT = new DateTime(2016, 11, 29, 15, 48, 0);
+            RealTimeClock.SetDateTime(DT);
+            DT = RealTimeClock.GetDateTime();
             #endregion
+
+
 
         }
         public static void EnableSequence()
@@ -71,13 +74,6 @@ namespace LCD01
             EnableSequence();
             Thread.Sleep(1);
         }
-        public static void AfficheChaine(string chaine)
-        {
-            foreach (char car in chaine)
-            {
-                SendCmd((byte)car);
-            }
-        } 
         public static void FaireDefilerGauche()
         {
             RS.Write(false);
@@ -90,6 +86,17 @@ namespace LCD01
             SendCmd(0x1C);
             Thread.Sleep(500);
         }
+        public static void AfficheChainePosition(string chaine, byte position)
+        {
+            RS.Write(false);
+            SendCmd((byte)(0x80 + position));
+
+            RS.Write(true);
+            foreach (char car in chaine)
+            {
+                SendCmd((byte)car);
+            }   
+        }
         public static void InitialisationProgramme()
         {
             Thread.Sleep(40);
@@ -97,6 +104,9 @@ namespace LCD01
             SendCmd(0x32);
             SendCmd(0x0C);
             SendCmd(0x01);
+        }
+        public static void TAffichage(object obj){
+            AfficheChainePosition(DT.Minute.ToString(), 0x40);
         }
     }
 }
