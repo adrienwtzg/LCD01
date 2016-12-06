@@ -13,9 +13,7 @@ namespace LCD01
 
         public static DateTime DT;
         public static byte PositionCurseur = 0x40;
-        
-        public Timer TimerAfficheMinutes = new Timer(new TimerCallback(TAffichage), null , 0, 1000);
-        TimerCallback TAffichage = 
+
 
         #region Initialisation Ecran LED
         static OutputPort D4 = new OutputPort(FEZSpider.Socket11.Pin5, true); //Affichage Ecran LED
@@ -27,7 +25,6 @@ namespace LCD01
         static OutputPort RS = new OutputPort(FEZSpider.Socket11.Pin4, false); //RS de l'écran
         #endregion
 
-        #endregion
 
         public static void Main()
         {
@@ -74,16 +71,22 @@ namespace LCD01
             EnableSequence();
             Thread.Sleep(1);
         }
-        public static void FaireDefilerGauche()
+        public static void FaireDefiler(string Choix)
         {
             RS.Write(false);
-            SendCmd(0x18);
-            Thread.Sleep(500);
-        }
-        public static void FaireDefilerDroite()
-        {
-            RS.Write(false);
-            SendCmd(0x1C);
+            if (Choix == "gauche")
+            {
+                SendCmd(0x18);
+            }
+            else if (Choix == "droite")
+            {
+                SendCmd(0x1C);
+            }
+            else
+            {
+                SendCmd(0x1C);
+            }
+            
             Thread.Sleep(500);
         }
         public static void AfficheChainePosition(string chaine, byte position)
@@ -104,9 +107,6 @@ namespace LCD01
             SendCmd(0x32);
             SendCmd(0x0C);
             SendCmd(0x01);
-        }
-        public static void TAffichage(object obj){
-            AfficheChainePosition(DT.Minute.ToString(), 0x40);
         }
     }
 }
