@@ -8,18 +8,12 @@ namespace LCD01
 {
     public class Program
     {
-<<<<<<< HEAD
         //Initialisation variables
+
         static byte PositionCurseur = 0x00;
-        static string Phrase = "Salut les copains !!!";
-=======
-        #region Initialisation variables
->>>>>>> refs/remotes/origin/master
+        static string Phrase = "Surtaxe Majorée = 240, -";
 
-        const byte POSITION_CURSEUR = 0x00;
-        static string Phrase = DateTime.Now.Hour.ToString() + "h " + DateTime.Now.Minute.ToString() + "min";
-
-        #region Initialisation Ecran LED
+        //Ecran LED
         static OutputPort D4 = new OutputPort(FEZSpider.Socket11.Pin5, true); //Affichage Ecran LED
         static OutputPort D5 = new OutputPort(FEZSpider.Socket11.Pin7, true);
         static OutputPort D6 = new OutputPort(FEZSpider.Socket11.Pin9, true);
@@ -27,32 +21,22 @@ namespace LCD01
         static OutputPort BacklightEcranLed = new OutputPort(FEZSpider.Socket11.Pin8, true); //Backlight de l'ecran LED
         static OutputPort Enable = new OutputPort(FEZSpider.Socket11.Pin3, true); //Enable de l'ecran LED
         static OutputPort RS = new OutputPort(FEZSpider.Socket11.Pin4, false); //RS de l'écran
-        #endregion
-
-        #endregion
 
         public static void Main()
         {
+            //Traitement
 
+            //Initialisation programme
             InitialisationProgramme();
 
-            #region Affichage d'une phrase qui défile
+            //Affichage d'une phrase qui défile
             RS.Write(true);
             AfficheChaine(Phrase);
-<<<<<<< HEAD
-
-            while(true){
-                RS.Write(false);
-                EcrirePin(false, false, false, true, true, false, false, false, 200);
-=======
             while (true)
 	        {
-	            FaireDefilerDroite();
-                
->>>>>>> refs/remotes/origin/master
-            }
-            #endregion
-
+	            FaireDefiler();
+	        }
+            
             #region Position Curseur
             //RS.Write(false);
             //PositionCurseur = 0x40;
@@ -63,38 +47,26 @@ namespace LCD01
             #endregion
 
         }
-        public static void EnableSequence()
+        public static void EnableSequence() //Methode pour faire fonctionner le LCD
         {
             Enable.Write(true); 
             Enable.Write(false);
 
-<<<<<<< HEAD
         }
-
-        public static void EcrirePin(bool d7, bool d6, bool d5, bool d4, bool d3, bool d2, bool d1, bool d0, int tempsSleep)
-=======
-        } //Methode pour faire fonctionner le LCD
         public static void SendCmd(byte Value)
->>>>>>> refs/remotes/origin/master
         {
-            D7.Write(d7);
-            D6.Write(d6);
-            D5.Write(d5);
-            D4.Write(d4);
+            D7.Write((Value & 0x80) == 0x80);
+            D6.Write((Value & 0x40) == 0x40);
+            D5.Write((Value & 0x20) == 0x20);
+            D4.Write((Value & 0x10) == 0x10);
             EnableSequence();
             Thread.Sleep(1);
-            D7.Write(d3);
-            D6.Write(d2);
-            D5.Write(d1);
-            D4.Write(d0);
+            D7.Write((Value & 0x08) == 0x08);
+            D6.Write((Value & 0x04) == 0x04);
+            D5.Write((Value & 0x02) == 0x02);
+            D4.Write((Value & 0x01) == 0x01);
             EnableSequence();
-            Thread.Sleep(tempsSleep);
-        }
-
-        public static void SendCmd(byte Value)
-        {
-            EcrirePin((Value & 0x80) == 0x80, (Value & 0x40) == 0x40, (Value & 0x20) == 0x20, (Value & 0x10) == 0x10, (Value & 0x08) == 0x08, (Value & 0x04) == 0x04, (Value & 0x02) == 0x02, (Value & 0x01) == 0x01, 1);
-
+            Thread.Sleep(1);
         }
         public static void AfficheChaine(string chaine)
         {
@@ -102,18 +74,20 @@ namespace LCD01
             {
                 SendCmd((byte)car);
             }
-        } 
-        public static void FaireDefilerGauche()
-        {
-            RS.Write(false);
-            SendCmd(0x18);
-            Thread.Sleep(500);
         }
-        public static void FaireDefilerDroite()
+        public static void FaireDefiler()
         {
-            RS.Write(false);
-            SendCmd(0x1C);
-            Thread.Sleep(500);
+                RS.Write(false);
+                D7.Write(false);
+                D6.Write(false);
+                D5.Write(false);
+                D4.Write(true);
+                EnableSequence();
+                Thread.Sleep(1);
+                D7.Write(true);
+                D6.Write(false);
+                EnableSequence();
+                Thread.Sleep(500);
         }
         public static void InitialisationProgramme()
         {
